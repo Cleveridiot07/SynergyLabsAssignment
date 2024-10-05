@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import React, { useState, lazy, Suspense } from 'react';
+import './App.css';
+import Loader from './components/Loader'; 
 
-import './App.css'
+const HomePage = lazy(() => import('./pages/HomePage'));
+const CreateUserForm = lazy(() => import('./pages/CreateUserForm'));
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  
   return (
-    <>
-      Hello World
-    </>
-  )
+    <div className="App">
+      <Suspense fallback={<Loader />}>
+        <CreateUserForm />
+      </Suspense>
+    </div>
+  );
 }
 
-export default App
+export default App;
